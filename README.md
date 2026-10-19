@@ -135,7 +135,13 @@ k8s/
     postgres.yaml
     redis.yaml
     kustomization.yaml
+
+screenshots-and-logs/
 ```
+
+## Screenshots and Test Logs
+
+The `screenshots-and-logs/` directory contains screenshots and terminal outputs showing the application's deployment, Kubernetes resource status, API responses, and rolling update test results.
 
 ## Things to note
 
