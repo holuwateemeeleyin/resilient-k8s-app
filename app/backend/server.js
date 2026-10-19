@@ -10,6 +10,7 @@ app.get('/api', (req, res) => {
   res.status(200).json({
     status: 'success',
     message: 'Resilient Kubernetes application is running!',
+    version: 'v2',
     instance: os.hostname(),
     timestamp: new Date().toISOString()
   });
