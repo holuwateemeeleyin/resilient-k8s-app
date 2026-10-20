@@ -1,0 +1,2 @@
+NAME      READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                 SELECTOR
+backend   2/2     2            2           95m   backend      resilient-backend:v2   app=backend

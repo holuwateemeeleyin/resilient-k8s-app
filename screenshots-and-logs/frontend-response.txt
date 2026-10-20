@@ -1,0 +1,107 @@
+HTTP/1.1 200 OK
+Date: Mon, 19 Oct 2026 23:38:11 GMT
+Content-Type: text/html
+Content-Length: 2389
+Connection: keep-alive
+Last-Modified: Mon, 19 Oct 2026 21:51:21 GMT
+ETag: "6ad690d9-955"
+Accept-Ranges: bytes
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resilient Kubernetes App</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      font-family: system-ui, sans-serif;
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    main {
+      width: 100%;
+      max-width: 620px;
+      padding: 32px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.08);
+    }
+
+    h1 { margin-top: 0; }
+    p { line-height: 1.6; color: #475569; }
+
+    .status {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #dcfce7;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    button {
+      margin-top: 16px;
+      padding: 11px 16px;
+      border: 0;
+      border-radius: 8px;
+      background: #2563eb;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    pre {
+      padding: 16px;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+      border-radius: 8px;
+      background: #f8fafc;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Resilient Kubernetes App</h1>
+    <p>A demo application for Kubernetes resilience, scaling and self-healing.</p>
+    <p><span class="status" id="status">Checking backend...</span></p>
+    <h2>Backend response</h2>
+    <pre id="response">Waiting for the API...</pre>
+    <button id="refresh">Check backend again</button>
+  </main>
+
+  <script>
+    async function checkBackend() {
+      const status = document.getElementById('status');
+      const response = document.getElementById('response');
+
+      status.textContent = 'Checking backend...';
+
+      try {
+        const result = await fetch('/api');
+        if (!result.ok) {
+          throw new Error(`HTTP ${result.status}`);
+        }
+
+        const data = await result.json();
+        status.textContent = 'Backend connected';
+        response.textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        status.textContent = 'Backend unavailable';
+        response.textContent = error.message;
+      }
+    }
+
+    document.getElementById('refresh').addEventListener('click', checkBackend);
+    checkBackend();
+  </script>
+</body>
+</html>

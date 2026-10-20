@@ -1,0 +1,7 @@
+NAME                       READY   STATUS    RESTARTS   AGE    IP                NODE       NOMINATED NODE   READINESS GATES
+backend-759f849c45-hcrsp   1/1     Running   0          100s   192.168.194.122   orbstack   <none>           <none>
+backend-759f849c45-wwj26   1/1     Running   0          91s    192.168.194.123   orbstack   <none>           <none>
+frontend-bff5df585-7t6vg   1/1     Running   0          64m    192.168.194.105   orbstack   <none>           <none>
+frontend-bff5df585-dj62k   1/1     Running   0          64m    192.168.194.106   orbstack   <none>           <none>
+postgres-0                 1/1     Running   0          39m    192.168.194.118   orbstack   <none>           <none>
+redis-5686cd4f6f-wpb8s     1/1     Running   0          44m    192.168.194.112   orbstack   <none>           <none>

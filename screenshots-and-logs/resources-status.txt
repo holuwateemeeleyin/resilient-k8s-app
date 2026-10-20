@@ -1,0 +1,23 @@
+NAME                       READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/backend    2/2     2            2           81m
+deployment.apps/frontend   2/2     2            2           77m
+deployment.apps/redis      1/1     1            1           62m
+
+NAME                        READY   AGE
+statefulset.apps/postgres   1/1     73m
+
+NAME               TYPE        CLUSTER-IP        EXTERNAL-IP   PORT(S)    AGE
+service/backend    ClusterIP   192.168.194.185   <none>        3000/TCP   81m
+service/frontend   ClusterIP   192.168.194.210   <none>        80/TCP     77m
+service/postgres   ClusterIP   192.168.194.211   <none>        5432/TCP   73m
+service/redis      ClusterIP   192.168.194.209   <none>        6379/TCP   62m
+
+NAME                                              REFERENCE            TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/backend-hpa   Deployment/backend   cpu: 6%/70%   2         5         2          37m
+
+NAME                                      MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE
+poddisruptionbudget.policy/backend-pdb    1               N/A               1                     35m
+poddisruptionbudget.policy/frontend-pdb   1               N/A               1                     35m
+
+NAME                                      CLASS   HOSTS   ADDRESS           PORTS   AGE
+ingress.networking.k8s.io/resilient-app   nginx   *       192.168.194.232   80      43m
